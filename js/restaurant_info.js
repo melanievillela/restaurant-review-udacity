@@ -1,16 +1,12 @@
 let restaurant;
 var newMap;
 
-/**
- * Initialize map as soon as the page is loaded.
- */
+// Initialize map as soon as the page is loaded
 document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
 });
 
-/**
- * Initialize leaflet map
- */
+/* Initialize leaflet map
 initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
@@ -22,7 +18,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-        mapboxToken: 'YOUR_MAPBOX_ACCESS_TOKEN',
+        mapboxToken: 'pk.eyJ1IjoibWVsYW5pZXZpbGxlbGEiLCJhIjoiY2pvb2x6Ymh6MTc5dDN2bzV2ZjRxYWExMyJ9.mHPmrEnGdTNNlfnO0RJLVw',
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -34,8 +30,9 @@ initMap = () => {
     }
   });
 }
+*/
 
-/* window.initMap = () => {
+window.initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
       console.error(error);
@@ -49,11 +46,9 @@ initMap = () => {
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
     }
   });
-} */
+} 
 
-/**
- * Get current restaurant from page URL.
- */
+// Get current restaurant from page URL
 fetchRestaurantFromURL = (callback) => {
   if (self.restaurant) { // restaurant already fetched!
     callback(null, self.restaurant)
@@ -76,9 +71,7 @@ fetchRestaurantFromURL = (callback) => {
   }
 }
 
-/**
- * Create restaurant HTML and add it to the webpage
- */
+// Create restaurant HTML and add it to the webpage
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
@@ -101,9 +94,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   fillReviewsHTML();
 }
 
-/**
- * Create restaurant operating hours HTML table and add it to the webpage.
- */
+// Create restaurant operating hours HTML table and add it to the webpage
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById('restaurant-hours');
   for (let key in operatingHours) {
@@ -121,9 +112,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   }
 }
 
-/**
- * Create all reviews HTML and add them to the webpage.
- */
+// Create all reviews HTML and add them to the webpage
 fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
@@ -143,9 +132,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   container.appendChild(ul);
 }
 
-/**
- * Create review HTML and add it to the webpage.
- */
+// Create review HTML and add it to the webpage
 createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
@@ -167,9 +154,7 @@ createReviewHTML = (review) => {
   return li;
 }
 
-/**
- * Add restaurant name to the breadcrumb navigation menu
- */
+// Add restaurant name to the breadcrumb navigation menu
 fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
@@ -177,9 +162,7 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
   breadcrumb.appendChild(li);
 }
 
-/**
- * Get a parameter by name from page URL.
- */
+// Get a parameter by name from page URL
 getParameterByName = (name, url) => {
   if (!url)
     url = window.location.href;
